@@ -10,9 +10,9 @@ Bu dokümantasyon, [mSvcBench/NetSatBench](https://github.com/mSvcBench/NetSatBe
 4. [Komut akışı ve kontroller](03-komut-akisi-ve-kontroller.md)
 5. [Troubleshooting](04-troubleshooting.md)
 6. [Reset ve temizlik](05-reset-ve-temizlik.md)
-7. [Kaynaklar ve upstream notları](06-kaynaklar-ve-upstream-notlari.md)
+7. [Kullanım ve test örnekleri](07-kullanim-ve-test-ornekleri.md)
+8. [Kaynaklar ve upstream notları](06-kaynaklar-ve-upstream-notlari.md)
 
 ## Kısa Hatırlatma
 
 Tek VM'de en kritik ayar `ETCD_HOST` ve `NODE_ETCD_HOST` değerlerinin containerlardan erişilebilir olmasıdır. Başarılı deploy sonunda her node Etcd'deki kendi config kaydına `eth0_ip` alanını yazmalıdır.
-

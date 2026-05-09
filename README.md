@@ -14,6 +14,7 @@ NetSatBench; uydu, gateway ve user düğümlerini Linux container olarak çalı�
 - Tek VM için çalışan `10nodes` lab akışı
 - `worker-config.json`, `sat-config.json` ve Etcd keyspace mantığının açıklaması
 - Host IP, Docker bridge underlay CIDR ve overlay CIDR ayrımı
+- Kurulum sonrası kullanım, topoloji okuma, ping, iperf3, routing ve `tc/netem` testleri
 - `eth0_ip` gelmiyor, Etcd erişilemiyor, image çekilemiyor, overcommit oluyor gibi hatalar için teşhis reçeteleri
 - Güvenli reset ve temizlik akışları
 - Tekrar edilebilir shell scriptleri ve örnek config dosyaları
@@ -72,7 +73,8 @@ python3 ./nsb.py run
 4. [Komut akışı ve kontroller](docs/03-komut-akisi-ve-kontroller.md)
 5. [Troubleshooting](docs/04-troubleshooting.md)
 6. [Reset ve temizlik](docs/05-reset-ve-temizlik.md)
-7. [Kaynaklar ve upstream notları](docs/06-kaynaklar-ve-upstream-notlari.md)
+7. [Kullanım ve test örnekleri](docs/07-kullanim-ve-test-ornekleri.md)
+8. [Kaynaklar ve upstream notları](docs/06-kaynaklar-ve-upstream-notlari.md)
 
 ## Lab İçin En Önemli Kural
 
@@ -104,7 +106,7 @@ Bu kılavuz hazırlanırken resmi NetSatBench deposu incelendi. Şu farklar öze
 ├── docs/       # Ayrıntılı Türkçe kılavuz
 ├── examples/   # Tek VM env ve worker config örnekleri
 ├── scripts/    # Kurulum, Etcd, smoke-check ve reset yardımcıları
-├── assets/     # Mermaid diyagramları
+├── assets/     # Mermaid diyagramları ve opsiyonel ekran görüntüleri
 └── README.md
 ```
 

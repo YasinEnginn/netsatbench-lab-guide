@@ -1,0 +1,14 @@
+site_name: NetSatBench Lab Guide
+site_description: Turkish lab setup and troubleshooting guide for NetSatBench
+repo_url: https://github.com/mSvcBench/NetSatBench
+theme:
+  name: readthedocs
+nav:
+  - Ana Sayfa: index.md
+  - Mimari ve Adresleme: 00-mimari-ve-adresleme.md
+  - Temiz Ubuntu Kurulum: 01-temiz-ubuntu-kurulum.md
+  - Konfigürasyon Dosyaları: 02-konfigurasyon-dosyalari.md
+  - Komut Akışı: 03-komut-akisi-ve-kontroller.md
+  - Troubleshooting: 04-troubleshooting.md
+  - Reset ve Temizlik: 05-reset-ve-temizlik.md
+  - Kaynaklar: 06-kaynaklar-ve-upstream-notlari.md

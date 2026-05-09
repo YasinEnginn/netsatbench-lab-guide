@@ -1,0 +1,12 @@
+flowchart TD
+  A[Ubuntu VM] --> B[Docker, SSH, Python venv]
+  B --> C[Etcd host-network]
+  C --> D[worker-config.json]
+  D --> E[nsb.py system-init-docker]
+  E --> F[nsb.py init --write-full-config]
+  F --> G[nsb.py deploy]
+  G --> H{eth0_ip written?}
+  H -- yes --> I[nsb.py run]
+  H -- no --> J[NODE_ETCD_HOST fallback and deploy --fix]
+  J --> G
+

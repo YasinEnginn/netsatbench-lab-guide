@@ -2,6 +2,8 @@
 
 Bu repo, [mSvcBench/NetSatBench](https://github.com/mSvcBench/NetSatBench) ile tek VM veya küçük çok-worker lab ortamı kurmak isteyenler için hazırlanmış pratik, açıklayıcı ve tekrar edilebilir bir kurulum kılavuzudur.
 
+**Keywords:** NetSatBench, LEO satellite emulation, VXLAN overlay, Etcd, Docker lab, satellite network emulator, Linux traffic control, netem, distributed emulation, Turkish setup guide.
+
 NetSatBench; uydu, gateway ve user düğümlerini Linux container olarak çalıştırır. Düğümler arası bağlantılar VXLAN overlay ile kurulur, link gecikmesi/kaybı/hızı Linux `tc` ve `netem` ile uygulanır, zamanla değişen topoloji ise Etcd üstünden `sat-agent` süreçlerine dağıtılır.
 
 > Bu repo resmi NetSatBench deposu değildir. Resmi kaynak: <https://github.com/mSvcBench/NetSatBench>. Atıf ve lisans notları için [NOTICE.md](NOTICE.md) dosyasına bakın.

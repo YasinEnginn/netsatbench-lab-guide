@@ -84,6 +84,8 @@ python3 ./nsb.py run
 
 Tek VM lab için pratik başlangıç: `ETCD_HOST` ve `NODE_ETCD_HOST` değerlerini host'un gerçek yönetim IP'si yapın. Yalnız container içinden host IP'ye erişilemiyorsa `NODE_ETCD_HOST` için Docker bridge gateway değerini deneyin.
 
+Bridge gateway fallback'inde `docker exec sat1 curl http://172.20.0.1:2379/version` timeout oluyorsa host firewall'u `172.20.0.0/24` kaynaklı Etcd trafiğini engelliyor olabilir. Hızlı lab teşhisi için [troubleshooting firewall bölümüne](docs/04-troubleshooting.md) bakın.
+
 ## Resmi Repoda Doğrulanan Küçük Tuzaklar
 
 Bu kılavuz hazırlanırken resmi NetSatBench deposu incelendi. Şu farklar özellikle lab kurulumunda önemlidir:

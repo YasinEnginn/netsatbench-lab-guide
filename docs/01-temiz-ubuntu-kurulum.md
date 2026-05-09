@@ -215,6 +215,37 @@ export NODE_ETCD_HOST=$(docker network inspect sat-vnet | jq -r '.[0].IPAM.Confi
 python3 ./nsb.py deploy --fix -t 8
 ```
 
+### Bridge Gateway Kullanırken Firewall Hızlı Çözümü
+
+`NODE_ETCD_HOST` değerini Docker bridge gateway'e, örneğin `172.20.0.1`, çevirdiğiniz halde container içinden Etcd'ye erişilemiyorsa host firewall'u `sat-vnet-cidr` kaynaklı trafiği kesiyor olabilir. Tek VM lab için hızlı test kuralı:
+
+```bash
+sudo iptables -I INPUT 1 -p tcp -s 172.20.0.0/24 --dport 2379 -j ACCEPT
+sudo iptables -I INPUT 1 -p tcp -s 172.20.0.0/24 --dport 2380 -j ACCEPT
+```
+
+> `172.20.0.0/24` değerini kendi `worker-config.json` içindeki `sat-vnet-cidr` ile aynı tutun. Etcd client trafiği için kritik port `2379`'dur; `2380` Etcd peer portudur ve tek node lab'da çoğu zaman şart değildir, fakat bu lab kuralında Etcd port çiftini birlikte açık bırakmak teşhisi sadeleştirir.
+
+Bu repodaki helper script aynı kuralları tekrar eklemeyecek şekilde kontrol ederek uygular:
+
+```bash
+SAT_VNET_CIDR=172.20.0.0/24 /path/to/guide/scripts/05-open-etcd-firewall-for-sat-vnet.sh
+```
+
+Sonra container içinden test edin:
+
+```bash
+docker exec sat1 sh -lc 'curl -v --max-time 3 http://172.20.0.1:2379/version'
+```
+
+Beklenen çıktı:
+
+```json
+{"etcdserver":"3.5.17","etcdcluster":"3.5.0"}
+```
+
+Bu test çalışırsa sorun Python veya NetSatBench configinden çok host firewall/iptables tarafındadır. Kurallar reboot sonrası kalıcı olmayabilir; kalıcı lab ortamı için `iptables-persistent`, `ufw route allow` veya dağıtımınıza uygun firewall yönetimini kullanın.
+
 ## 11. Run
 
 ```bash
@@ -227,4 +258,3 @@ Node içine girip test:
 python3 ./nsb.py exec usr1 ip route show
 python3 ./nsb.py exec usr1 ping -c 3 grd1
 ```
-

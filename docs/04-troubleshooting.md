@@ -52,6 +52,33 @@ export NODE_ETCD_PORT=2379
 python3 ./nsb.py deploy --fix -t 8
 ```
 
+Bridge gateway'i kullandığınız halde `curl` timeout oluyorsa host firewall'u Docker bridge kaynaklı trafiği kesiyor olabilir. Hızlı teşhis için host üzerinde:
+
+```bash
+sudo iptables -I INPUT 1 -p tcp -s 172.20.0.0/24 --dport 2379 -j ACCEPT
+sudo iptables -I INPUT 1 -p tcp -s 172.20.0.0/24 --dport 2380 -j ACCEPT
+```
+
+Bu kılavuz reposundaki helper script de aynı işi idempotent şekilde yapar:
+
+```bash
+SAT_VNET_CIDR=172.20.0.0/24 /path/to/guide/scripts/05-open-etcd-firewall-for-sat-vnet.sh
+```
+
+Sonra container içinden doğrudan bridge gateway endpointini test edin:
+
+```bash
+docker exec sat1 sh -lc 'curl -v --max-time 3 http://172.20.0.1:2379/version'
+```
+
+Beklenen başarılı cevap:
+
+```json
+{"etcdserver":"3.5.17","etcdcluster":"3.5.0"}
+```
+
+Bu çalışırsa asıl problem firewall/iptables katmanıdır. `172.20.0.0/24` ve `172.20.0.1` değerlerini kendi `sat-vnet-cidr` ve Docker bridge gateway değerlerinizle eşleştirin.
+
 ## `eth0_ip` Eksik
 
 Belirti:
@@ -166,4 +193,3 @@ Bulut ortamında ek olarak:
 | `examples/10nodes/workers-config.json` | `examples/10nodes/worker-config.json` |
 | `system-cleanup-docker` | `system-clean-docker` |
 | `docs/contro-commands.md` linki | `docs/control-commands.md` |
-

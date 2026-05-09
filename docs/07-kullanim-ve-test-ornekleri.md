@@ -402,19 +402,17 @@ Amaç: Link ve route durumunun zamanla değişimini izlemek.
 
 ## Ekran Görüntüsü Önerileri
 
-Ekran görüntüsü eklemek isterseniz dosyaları `assets/screenshots/` altına koyun. Reponun sade kalması için 5-7 görüntü yeterli olur:
+Ekran görüntüsü eklemek isterseniz dosyaları `assets/screenshots/` altına koyun. Reponun sade kalması için temel beş görüntü yeterlidir:
 
 | Dosya adı önerisi | Ne göstermeli? |
 |---|---|
 | `01-docker-ps.png` | `docker ps` ile node containerları |
-| `02-etcd-nodes-sat1.png` | `/config/nodes/sat1` JSON ve `eth0_ip` |
-| `03-etcd-links-watch.png` | `/config/links/` watch çıktısı |
+| `02-etcd-nodes-sat1.png` | `/config/nodes/sat1` JSON çıktısı |
+| `03-etcd-links.png` | `/config/links/` aktif link çıktısı |
 | `04-container-ip-link.png` | `sat1` içinde `ip -br addr` ve `ip -br link` |
 | `05-ping-usr1-grd1.png` | `usr1 -> grd1` ping testi |
-| `06-iperf3-usr1-grd1.png` | iperf3 throughput testi |
-| `07-tc-qdisc-vxlan.png` | VXLAN interface üstünde `tc qdisc` |
 
-Görüntüleri ekledikten sonra bu sayfaya kısa başlıklarla bağlamak yeterli; uzun ekran görüntüsü galerisi oluşturmaya gerek yok.
+Opsiyonel olarak `06-iperf3-usr1-grd1.png` ve `07-tc-qdisc-vxlan.png` eklenebilir, fakat temel doğrulama için şart değildir. Görüntüleri ekledikten sonra bu sayfaya kısa başlıklarla bağlamak yeterli; uzun ekran görüntüsü galerisi oluşturmaya gerek yok.
 
 ## En Kısa Özet
 
@@ -435,4 +433,3 @@ python3 ./nsb.py exec sat1 tc qdisc show
 ```
 
 Kısaca: elinizde 8 uydu, 1 gateway ve 1 user terminalden oluşan, epoch dosyalarıyla zaman içinde değişen küçük bir LEO ağ emülasyonu vardır. Gerçek anlık topoloji için en güvenilir kaynak `/config/links/` ve container içindeki `vl_*` VXLAN arayüzleridir.
-

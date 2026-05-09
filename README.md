@@ -4,7 +4,7 @@ Bu repo, [mSvcBench/NetSatBench](https://github.com/mSvcBench/NetSatBench) ile t
 
 NetSatBench; uydu, gateway ve user düğümlerini Linux container olarak çalıştırır. Düğümler arası bağlantılar VXLAN overlay ile kurulur, link gecikmesi/kaybı/hızı Linux `tc` ve `netem` ile uygulanır, zamanla değişen topoloji ise Etcd üstünden `sat-agent` süreçlerine dağıtılır.
 
-> Bu repo resmi NetSatBench deposu değildir. Resmi kaynak: <https://github.com/mSvcBench/NetSatBench>
+> Bu repo resmi NetSatBench deposu değildir. Resmi kaynak: <https://github.com/mSvcBench/NetSatBench>. Atıf ve lisans notları için [NOTICE.md](NOTICE.md) dosyasına bakın.
 
 ## Ne Var?
 
